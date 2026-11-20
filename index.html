@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GJ MOBILE - ហាងលក់ទូរស័ព្ទដៃ</title>
-  
+
   <!-- Facebook Open Graph Meta Tags for Boost Post / Sharing Preview -->
   <meta property="og:title" content="GJ MOBILE">
   <meta property="og:description" content="សូមស្វាគមន៍មកកាន់ GJ MOBILE - ទីតាំងផ្លូវកម្ពុជាក្រោម ស្តុបទឹកល្អក់១។ ទូរស័ព្ទដៃទំនើប!">
@@ -15,234 +15,388 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dangrek&display=swap');
+    :root {
+      --bg-deep: #060913;
+    }
+
     body {
-      font-family: 'Koulen', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', 'Battambang', sans-serif;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 1rem;
+      align-items: flex-start;
+      color: #f8fafc;
+      background-color: var(--bg-deep);
       overflow-x: hidden;
-
-      /* Background image full screen */
-      background: url("https://images.pexels.com/photos/635279/pexels-photo-635279.jpeg") 
-                   no-repeat center center fixed;
-      background-size: cover;
+      position: relative;
     }
 
-    .dangrek-regular {
-      font-family: "Dangrek", sans-serif;
-      font-weight: 400;
-      font-style: normal;
+    /* ផ្ទៃខាងក្រោយបែប Royal Cobalt & Crimson Glow */
+    .cobalt-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.24) 0%, transparent 45%),
+                  radial-gradient(circle at 85% 25%, rgba(225, 29, 72, 0.18) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 85%, rgba(14, 165, 233, 0.14) 0%, transparent 55%),
+                  #060913;
     }
 
-    .card {
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: pointer;
+    .dot-matrix {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(ellipse at center, black 45%, transparent 88%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 88%);
     }
 
-    .card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15),
-        0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    /* Header Card ប្រណីត */
+    .hero-panel {
+      background: linear-gradient(145deg, rgba(30, 58, 138, 0.45), rgba(15, 23, 42, 0.85));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      border-radius: 28px;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      animation: fadeSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* New style for the clickable logo (ADJUSTED FOR SMALLEST SIZE) */
-    .special-offer-container {
-      text-align: center;
-      margin-bottom: 20px;
+    /* រូបភាព Logo ហាង */
+    .store-logo {
+      width: 104px;
+      height: 104px;
+      border-radius: 24px;
+      object-fit: cover;
+      background: #0f172a;
+      border: 2px solid rgba(96, 165, 250, 0.45);
+      box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.6), 0 0 22px rgba(59, 130, 246, 0.25);
+      transition: transform 0.3s ease;
     }
 
-    .special-offer-logo-link {
-        display: inline-block; /* Allows centering the block within the container */
-        max-width: 150px; /* MADE SMALLEST: Changed from 200px to 150px */
-        padding: 8px; /* Slightly reduced padding */
-        border-radius: 1rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
-        background-color: rgba(255, 255, 255, 0); 
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .special-offer-logo-link:hover {
-        transform: translateY(-3px) scale(1.05); /* Slightly bigger hover scale */
-        box-shadow: 0 10px 15px -3px rgba(231, 76, 60, 0.5), 0 4px 6px -2px rgba(231, 76, 60, 0.2); /* Red shadow on hover */
-    }
-    .special-offer-logo-link img {
-        width: 100%; 
-        height: auto;
-        display: block;
-    }
-    
-    .offer-text {
-        font-size: 1.1em;
-        font-weight: bold;
-        color: #e74c3c; /* Red color to highlight special price */
-        margin-top: 5px;
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+    .store-logo:hover {
+      transform: scale(1.04);
     }
 
-
-    .info-button {
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      cursor: pointer;
+    /* ប៊ូតុងលេខទូរស័ព្ទ និង Telegram */
+    .contact-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.25s ease;
     }
 
-    .info-button:hover {
-      transform: scale(1.1) rotate(5deg);
-      background-color: #f1f5f9;
+    .contact-pill:hover {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(96, 165, 250, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* កាតតំណភ្ជាប់ (Glass Link Cards) */
+    .hub-card {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 0.95rem 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeSlideUp 0.55s forwards;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-4px) scale(1.012);
+      border-color: rgba(96, 165, 250, 0.45);
+      background: rgba(30, 41, 59, 0.88);
+      box-shadow: 0 18px 35px -12px rgba(37, 99, 235, 0.28);
+    }
+
+    .hub-card:active {
+      transform: scale(0.98);
+    }
+
+    /* កាតពិសេស GJ MOBILE FIX */
+    .card-fix {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.14), rgba(15, 23, 42, 0.82));
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+
+    .card-fix:hover {
+      border-color: rgba(251, 113, 133, 0.7);
+      box-shadow: 0 18px 35px -12px rgba(225, 29, 72, 0.3);
+    }
+
+    /* លំដាប់ Animation */
+    .hub-card:nth-child(1) { animation-delay: 0.06s; }
+    .hub-card:nth-child(2) { animation-delay: 0.12s; }
+    .hub-card:nth-child(3) { animation-delay: 0.18s; }
+    .hub-card:nth-child(4) { animation-delay: 0.24s; }
+    .hub-card:nth-child(5) { animation-delay: 0.30s; }
+    .hub-card:nth-child(6) { animation-delay: 0.36s; }
+    .hub-card:nth-child(7) { animation-delay: 0.42s; }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .icon-frame {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .hub-card:hover .icon-frame {
+      transform: scale(1.08) rotate(-4deg);
+    }
+
+    /* Special Offer Banner */
+    .special-offer-box {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.16), rgba(37, 99, 235, 0.14));
+      border: 1.5px solid rgba(251, 113, 133, 0.45);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      transition: all 0.35s ease;
+    }
+
+    .special-offer-box:hover {
+      border-color: #fb7185;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 35px -10px rgba(225, 29, 72, 0.35);
+    }
+
+    .khmer-font {
+      font-family: 'Kantumruy Pro', 'Battambang', sans-serif;
     }
   </style>
 </head>
 
 <body>
-  <div class="w-full max-w-sm md:max-w-xl mx-auto p-4">
-    <div class="relative w-full overflow-hidden mb-6 p-6 rounded-3xl shadow-lg"
-      style="background: linear-gradient(135deg, #375D9A, #2C4880); transition: all 0.4s ease;">
-      <h1 class="relative text-center text-white text-xl md:text-2xl font-medium tracking-wide">
-        សូមជ្រើសរើសការទាក់ទង: <br>
-        Tel : 096 277 2222 / 076 2222 531
+
+  <div class="cobalt-bg"></div>
+  <div class="dot-matrix"></div>
+
+  <main class="w-full max-w-md px-5 py-8 relative z-10">
+
+    <!-- Header Section -->
+    <header class="hero-panel p-6 mb-6 text-center">
+      <!-- ដាក់រូប Logo ហាងរបស់អ្នកឈ្មោះ logo.png -->
+      <div class="mb-3 inline-flex">
+        <img src="onlineshop.png"
+             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=GJ+MOBILE&background=1d4ed8&color=ffffff&size=256&bold=true'"
+             alt="GJ MOBILE Logo"
+             class="store-logo">
+      </div>
+
+      <div class="block mb-2">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+          GJ MOBILE • OFFICIAL HUB
+        </span>
+      </div>
+
+      <h1 class="khmer-font text-lg sm:text-xl font-bold text-white leading-relaxed">
+        សូមជ្រើសរើសការទាក់ទង
       </h1>
-      <p class="relative text-center text-white text-xl md:text-2xl font-medium tracking-wide">Telegram: 071 998 9988 / 076 2222 844</p>
-    </div>
 
-    <a href="https://web.facebook.com/gojomobile7799" target="_blank"
-      class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-[#1877F2]">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M14 11.5h2.5l.5-2.5H14V7c0-.6.4-1 1-1h1.5V3.5h-2c-2.8 0-4 1.2-4 3.7V9h-2v2.5h2V20h3z">
-            </path>
-          </svg>
+      <!-- លេខទូរស័ព្ទ និង Telegram -->
+      <div class="mt-4 space-y-2.5 text-left">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-200/80 text-center khmer-font">
+          លេខទូរស័ព្ទហាង (ចុចដើម្បីតេ)
         </div>
-        <div class="flex-grow">
-          <h2 class="text-lg font-semibold text-gray-800">GJ MOBILE</h2>
-          <p class="text-sm text-gray-500 dangrek-regular">បណ្តាញព័ត៌មានពីឈ្មោះ: Facebook Page</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="tel:0962772222" class="contact-pill rounded-2xl py-2 px-3 text-center">
+            <span class="block text-[10px] font-bold text-emerald-400">Smart</span>
+            <span class="text-xs sm:text-sm font-bold text-white">096 277 2222</span>
+          </a>
+          <a href="tel:0762222531" class="contact-pill rounded-2xl py-2 px-3 text-center">
+            <span class="block text-[10px] font-bold text-amber-400">Cellcard</span>
+            <span class="text-xs sm:text-sm font-bold text-white">076 2222 531</span>
+          </a>
         </div>
-      </div>
-    </a>
 
-    <a href="https://web.facebook.com/magneticgojo8899" target="_blank"
-      class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-[#1877F2]">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M14 11.5h2.5l.5-2.5H14V7c0-.6.4-1 1-1h1.5V3.5h-2c-2.8 0-4 1.2-4 3.7V9h-2v2.5h2V20h3z">
-            </path>
-          </svg>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-sky-200/80 text-center pt-1 khmer-font">
+          Telegram Contact
         </div>
-        <div class="flex-grow">
-          <h2 class="text-lg font-semibold text-gray-800">GJ MOBILE 2</h2>
-          <p class="text-sm text-gray-500 dangrek-regular">បណ្តាញព័ត៌មានពីឈ្មោះ: Facebook Page</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="https://t.me/magnetic_apple_01" target="_blank" rel="noopener noreferrer" class="contact-pill rounded-2xl py-2 px-3 text-center">
+            <span class="block text-[10px] font-bold text-sky-400">Metfone TG</span>
+            <span class="text-xs sm:text-sm font-bold text-white">071 998 9988</span>
+          </a>
+          <a href="https://t.me/magnetic_apple_01" target="_blank" rel="noopener noreferrer" class="contact-pill rounded-2xl py-2 px-3 text-center">
+            <span class="block text-[10px] font-bold text-sky-400">Cellcard TG</span>
+            <span class="text-xs sm:text-sm font-bold text-white">076 2222 844</span>
+          </a>
         </div>
       </div>
-    </a>
+    </header>
 
-    <a href="https://www.tiktok.com/@gojophoneshop7799?_r=1&_t=ZS-96lPhzPvN9Z" target="_blank"
-   class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-  <div class="flex items-center space-x-4">
-    <div class="w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden">
-      <img src="./onlineshop.png" 
-           alt="TikTok Profile" 
-           class="w-full h-full object-cover">
-    </div>
+    <!-- Link Cards Section -->
+    <section class="flex flex-col gap-3.5">
 
-    <div class="flex-grow">
-      <h2 class="text-lg font-semibold text-gray-800">TikTok</h2>
-      <p class="text-sm text-gray-500 dangrek-regular">គណនីផ្លូវការ TikTok ឈ្មោះ : GJ MOBILE</p>
-    </div>
-  </div>
-</a>
-
-    <a href="https://www.tiktok.com/@ning11123" target="_blank"
-   class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-  <div class="flex items-center space-x-4">
-    <div class="w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden">
-      <img src="./onlineshop.png" 
-           alt="TikTok Profile" 
-           class="w-full h-full object-cover">
-    </div>
-
-    <div class="flex-grow">
-      <h2 class="text-lg font-semibold text-gray-800">TikTok</h2>
-      <p class="text-sm text-gray-500 dangrek-regular">គណនីផ្លូវការ TikTok ឈ្មោះ : ទីផ្សារ២៥ខេត្តក្រុង</p>
-    </div>
-  </div>
-</a>
-
-    <a href="https://t.me/magnetic_apple_01" target="_blank"
-      class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-[#0088cc]">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M9.999 15.17l-.39 5.58c.56 0 .8-.24 1.1-.53l2.64-2.52 5.47 4c1 .56 1.72.27 1.98-.92l3.59-16.85.01-.01c.32-1.49-.54-2.07-1.52-1.72L1.45 9.53c-1.46.58-1.44 1.41-.25 1.79l5.88 1.83L18.69 6.2c.59-.36 1.13-.16.69.23">
-            </path>
+      <!-- 1. GJ MOBILE Facebook -->
+      <a href="https://web.facebook.com/gojomobile7799" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-[#1877F2] text-white shadow-md">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 11.5h2.5l.5-2.5H14V7c0-.6.4-1 1-1h1.5V3.5h-2c-2.8 0-4 1.2-4 3.7V9h-2v2.5h2V20h3z"/>
           </svg>
         </div>
-        <div class="flex-grow">
-          <h2 class="text-lg font-semibold text-gray-800">Telegram</h2>
-          <p class="text-sm text-gray-500 dangrek-regular">ទាក់ទង Telegram</p>
+        <div class="flex-1 min-w-0">
+          <h2 class="text-base sm:text-lg font-bold text-white truncate">GJ MOBILE</h2>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5">បណ្តាញព័ត៌មានពីឈ្មោះ: Facebook Page</p>
         </div>
-      </div>
-    </a>
-
-    <a href="https://t.me/Magnetic889" target="_blank"
-   class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-  <div class="flex items-center space-x-4">
-    <div class="w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden">
-      <img src="./onlineshop.png" 
-           alt="TikTok Profile" 
-           class="w-full h-full object-cover">
-    </div>
-
-    <div class="flex-grow">
-      <h2 class="text-lg font-semibold text-gray-800">GJ MOBILE FIX</h2>
-      <p class="text-sm text-gray-500 dangrek-regular">សេវាកម្មជួសជុល</p>
-    </div>
-  </div>
-</a>
-
-    <a href="https://maps.app.goo.gl/akg26eEJ279YKxY17" target="_blank"
-      class="card block bg-white p-4 mb-4 rounded-3xl shadow-md">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-green-500">
-          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zM12 11.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5 14.5 7.6 14.5 9 13.4 11.5 12 11.5z">
-            </path>
-          </svg>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </div>
-        <div class="flex-grow">
-          <h2 class="text-lg font-semibold text-gray-800">ទីតាំងហាង</h2>
-          <p class="text-sm text-gray-500 dangrek-regular">GJ MOBILE ផ្លូវកម្ពុជាក្រោម ស្តុបទឹកល្អក់១ 096 277 2222 / 076 2222 531 / 071 998 9988</p>
-        </div>
-      </div>
-    </a>
-    
-    <div class="special-offer-container">
-        <a href="https://web.facebook.com/magneticgojo8899" target="_blank" class="special-offer-logo-link">
-            <img src="magnetic.png" onerror="this.onerror=null; this.src='https://placehold.co/150x50/e74c3c/ffffff?text=GJ+MOBILE'" 
-                 alt="ចុចទីនេះដើម្បីដឹងតម្លៃពិសេស Logo" class="w-full h-auto">
-        </a>
-        <p class="offer-text">ចុចទីនេះដើម្បីដឹងតម្លៃពិសេស!</p>
-    </div>
-    
-    <div class="flex justify-center mt-6">
-      <a href="https://magneticsmartphone.store" target="_blank"
-        class="info-button w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-md">
-        <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
-          </path>
-        </svg>
       </a>
-    </div>
-  </div>
+
+      <!-- 2. GJ MOBILE 2 Facebook -->
+      <a href="https://web.facebook.com/magneticgojo8899" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-gradient-to-br from-blue-500 to-indigo-700 text-white shadow-md">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 11.5h2.5l.5-2.5H14V7c0-.6.4-1 1-1h1.5V3.5h-2c-2.8 0-4 1.2-4 3.7V9h-2v2.5h2V20h3z"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h2 class="text-base sm:text-lg font-bold text-white truncate">GJ MOBILE 2</h2>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5">បណ្តាញព័ត៌មានពីឈ្មោះ: Facebook Page</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 3. TikTok 1 -->
+      <a href="https://www.tiktok.com/@gojophoneshop7799?_r=1&_t=ZS-96lPhzPvN9Z" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-slate-900 border border-slate-700">
+          <img src="./onlineshop.png"
+               alt="TikTok Profile"
+               class="w-full h-full object-cover"
+               onerror="this.onerror=null; this.src='https://placehold.co/50x50/0f172a/ffffff?text=TT';">
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <h2 class="text-base sm:text-lg font-bold text-white">TikTok</h2>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-500/20 text-blue-300">ACC 1</span>
+          </div>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5">គណនីផ្លូវការ TikTok ឈ្មោះ : GJ MOBILE</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 4. TikTok 2 -->
+      <a href="https://www.tiktok.com/@ning11123" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-slate-900 border border-slate-700">
+          <img src="./onlineshop.png"
+               alt="TikTok Profile"
+               class="w-full h-full object-cover"
+               onerror="this.onerror=null; this.src='https://placehold.co/50x50/e11d48/ffffff?text=TT';">
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <h2 class="text-base sm:text-lg font-bold text-white">TikTok</h2>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-500/20 text-rose-300">ACC 2</span>
+          </div>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5">គណនីផ្លូវការ TikTok ឈ្មោះ : ទីផ្សារ២៥ខេត្តក្រុង</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 5. Telegram -->
+      <a href="https://t.me/magnetic_apple_01" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-[#0088cc] text-white shadow-md">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.999 15.17l-.39 5.58c.56 0 .8-.24 1.1-.53l2.64-2.52 5.47 4c1 .56 1.72.27 1.98-.92l3.59-16.85.01-.01c.32-1.49-.54-2.07-1.52-1.72L1.45 9.53c-1.46.58-1.44 1.41-.25 1.79l5.88 1.83L18.69 6.2c.59-.36 1.13-.16.69.23"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h2 class="text-base sm:text-lg font-bold text-white">Telegram</h2>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5">ទាក់ទង Telegram</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-slate-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 6. GJ MOBILE FIX -->
+      <a href="https://t.me/Magnetic889" target="_blank" rel="noopener noreferrer" class="hub-card card-fix">
+        <div class="icon-frame bg-slate-900 border border-rose-500/40">
+          <img src="./onlineshop.png"
+               alt="GJ MOBILE FIX"
+               class="w-full h-full object-cover"
+               onerror="this.onerror=null; this.src='https://placehold.co/50x50/e11d48/ffffff?text=FIX';">
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <h2 class="text-base sm:text-lg font-bold text-rose-300 truncate">GJ MOBILE FIX</h2>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-500/20 text-rose-300 khmer-font">ជួសជុល</span>
+          </div>
+          <p class="khmer-font text-xs text-slate-300 mt-0.5">សេវាកម្មជួសជុល</p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 7. ទីតាំងហាង (Google Maps) -->
+      <a href="https://maps.app.goo.gl/akg26eEJ279YKxY17" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div class="icon-frame bg-gradient-to-br from-emerald-500 to-teal-700 text-white shadow-md">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5 14.5 7.6 14.5 9 13.4 11.5 12 11.5z"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h2 class="khmer-font text-base sm:text-lg font-bold text-white">ទីតាំងហាង</h2>
+          <p class="khmer-font text-xs text-slate-400 mt-0.5 leading-relaxed">
+            GJ MOBILE ផ្លូវកម្ពុជាក្រោម ស្តុបទឹកល្អក់១ • 096 277 2222 / 076 2222 531 / 071 998 9988
+          </p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-slate-800/90 flex items-center justify-center text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- Special Offer Banner -->
+
+  </main>
+
 </body>
 
 </html>
